@@ -1,0 +1,15 @@
+
+POST: localhost:8080/api/tickets
+
+data: 
+     {
+  "subject": "Laptop dead kjhioh",
+  "description": "My presentation has scheduled in 5 mins and the meeting server is down",
+  "requesterEmail": "fggwefg@gmail.com"
+     }
+
+
+
+Command to feed environmental variable particularly for API Key:
+  
+  $env:GROQ_API_KEY = "your_new_groq_api_key"  ------- On terminal in vscode

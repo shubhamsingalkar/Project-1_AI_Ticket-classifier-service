@@ -1,0 +1,32 @@
+server:
+   port: 8090
+
+spring:
+  application:
+    name: AI-Classifier-Service
+  ai:
+    openai:
+      api-key: ${GROQ_API_KEY}
+      base-url: https://api.groq.com/openai/v1
+      chat:
+        options:
+          model: openai/gpt-oss-120b
+      embedding:
+        enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+        
+resilience4j:
+  retry:
+    instances:
+      groq-classify:
+        max-attempts: 3
+        wait-duration: 500ms
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+        retry-exceptions: 
+           - in.codekerdos.classifierservice.exception.AiProviderException
